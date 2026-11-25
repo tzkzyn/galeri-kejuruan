@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Galeri Kejuruan — BBPPMPV BMTI
 
-## Getting Started
+Portal web resmi **Galeri Kejuruan BBPPMPV BMTI** (*"Perwujudan Gagasan lewat Materi Kejuruan"*) yang menyajikan pusat sumber belajar vokasi, galeria kompetensi keahlian, pelatihan mandiri & terbimbing, serta informasi kemitraan DUDI.
 
-First, run the development server:
+## Tech Stack
+- **Framework**: Next.js 16 (App Router, Turbopack)
+- **Library UI**: React 19, TypeScript 5
+- **Ikon & Animasi**: `lucide-react`, `motion` (`motion/react`), GSAP + ScrollTrigger + SplitText (CDN), Lenis Smooth Scroll
+- **Styling**: Pure CSS (`src/app/globals.css`) dengan CSS Custom Properties (tanpa Tailwind)
+
+## Cara Menjalankan di Lokal
+
+Pastikan **Node.js 20+** dan **npm** sudah terpasang.
 
 ```bash
+# 1. Masuk ke folder proyek
+cd frontend
+
+# 2. Install dependensi
+npm install
+
+# 3. Jalankan mode development
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Buka browser di `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Perintah Penting Lainnya
+```bash
+# Cek build produksi & TypeScript
+npm run build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Jalankan hasil build produksi
+npm run start
 
-## Learn More
+# Cek linting
+npm run lint
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Struktur Proyek Singkat
+```text
+frontend/
+├── public/
+│   ├── images/
+│   │   ├── galeria/      # Thumbnail kompetensi keahlian
+│   │   ├── hero/         # Cadangan aset hero
+│   │   ├── logo/         # Logo resmi Galeri Kejuruan & GK
+│   │   └── mitra/        # 7 logo resmi mitra industri (DUDI)
+│   └── init-scripts.js   # Inisialisasi Lenis, GSAP ScrollTrigger & Scroll Reveal
+├── src/
+│   ├── app/
+│   │   ├── layout.tsx               # Root layout, font & metadata
+│   │   ├── globals.css              # Token warna, tipografi, layout & animasi CSS
+│   │   ├── page.tsx                 # Halaman utama (Beranda)
+│   │   ├── galeria/page.tsx         # Halaman penuh Galeria Kompetensi Keahlian
+│   │   └── pelatihan-mandiri/page.tsx # Halaman penuh Pelatihan Mandiri
+│   └── components/                  # Komponen tiap section halaman
+├── ARCHITECTURE.md
+├── DESIGN.md
+├── PRD.md
+└── TASKS.md
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Alur Kerja Git (Kolaborasi Tim)
+Repositori menggunakan 2 branch utama:
+- **`main`**: versi stabil siap deploy. Jangan commit langsung ke `main`.
+- **`dev`**: branch utama untuk pengembangan harian.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+# Ambil update terbaru dari dev sebelum mulai bekerja
+git checkout dev
+git pull origin dev
 
-## Deploy on Vercel
+# Setelah selesai mengedit & memastikan `npm run build` sukses
+git add .
+git commit -m "feat: deskripsi singkat perubahan"
+git push origin dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Dokumentasi Lengkap
+- [`ARCHITECTURE.md`](./ARCHITECTURE.md) — Arsitektur komponen, routing, dan sistem animasi
+- [`DESIGN.md`](./DESIGN.md) — Sistem desain, warna, tipografi, dan aturan hover
+- [`PRD.md`](./PRD.md) — Spesifikasi produk dan fitur tiap halaman
+- [`TASKS.md`](./TASKS.md) — Daftar pekerjaan selesai & rencana lanjutan
