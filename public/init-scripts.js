@@ -129,7 +129,7 @@ const effects = {
   }
 };
 function lockWords(targets) {
-  const split = SplitText.create(targets, { type: 'words' });
+  const split = SplitText.create(targets, { type: 'words', aria: 'none' });
   const words = split.words;
   const measure = () => {
     const weights = words.map(word => word.style.fontWeight);
@@ -154,9 +154,7 @@ document.querySelectorAll('[data-8b-section]').forEach(section => {
           if (name === 'embolden') {
             const bolds = element.querySelectorAll('b');
             if (!bolds.length) return;
-            const lock = lockWords(bolds);
-            reverts.push(lock.revert);
-            target = lock.words;
+            target = bolds;
           }
           ScrollTrigger.create({ id: `${id}:${i + 1}`, trigger: element, start: 'top 88%', once: true, animation: effects[name](target) });
         });
